@@ -491,9 +491,11 @@ def create_web_app():
     )
 
     @monitor_app.get("/health")
+    @monitor_app.get("/v1/health")
     def health():
         return {
             "status": "healthy",
+            "service": "monitor",
             "model_version": bert.model_version,
             "device": str(bert.device),
             "timestamp": datetime.now(timezone.utc).isoformat(),
