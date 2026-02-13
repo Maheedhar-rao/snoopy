@@ -19,8 +19,9 @@ COPY *.py ./
 COPY start.sh .
 RUN chmod +x start.sh
 
-# Copy full model (tokenizer + weights) into image
-COPY models/email_classifier/ /app/models/email_classifier/
+# Copy tokenizer files (weights downloaded at startup from GitHub Release)
+RUN mkdir -p /app/models/email_classifier
+COPY models/email_classifier/*.json models/email_classifier/*.txt /app/models/email_classifier/
 
 ENV PORT=8080
 ENV PYTHONUNBUFFERED=1

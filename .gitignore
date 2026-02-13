@@ -1,3 +1,6 @@
+# Model weights (stored in GitHub Releases)
+models/email_classifier/*.safetensors
+
 # Old model versions
 models/email_classifier_v*/
 
