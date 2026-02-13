@@ -15,14 +15,13 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY predict.py app.py download_model.py ./
-
-# Create model directory (weights downloaded at startup)
-RUN mkdir -p /app/models/email_classifier
-
-# Startup script
+COPY *.py ./
 COPY start.sh .
 RUN chmod +x start.sh
+
+# Copy tokenizer files (weights downloaded at startup)
+RUN mkdir -p /app/models/email_classifier
+COPY models/email_classifier/*.json models/email_classifier/*.txt /app/models/email_classifier/
 
 ENV PORT=8080
 ENV PYTHONUNBUFFERED=1
