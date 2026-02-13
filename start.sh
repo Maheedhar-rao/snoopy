@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# Monitor mode: set MONITOR_WEB_MODE=1 to run the live monitor instead of the API
+if [ "$MONITOR_WEB_MODE" = "1" ]; then
+    echo "Starting live monitor service..."
+    exec uvicorn live_monitor:web_app --host 0.0.0.0 --port ${PORT:-8080}
+fi
+
 MODEL_DIR="/app/models/email_classifier"
 
 # Download model weights from GitHub Release if not baked into image
