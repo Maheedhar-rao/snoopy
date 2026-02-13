@@ -1,5 +1,4 @@
-# Model weights (268MB+, stored in Supabase Storage)
-models/email_classifier/*.safetensors
+# Old model versions
 models/email_classifier_v*/
 
 # Training data
