@@ -1,0 +1,23 @@
+# Model weights (268MB+, stored in Supabase Storage)
+models/email_classifier/*.safetensors
+models/email_classifier_v*/
+
+# Training data
+data/*.csv
+data/monitor_history/
+
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

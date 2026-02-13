@@ -1,0 +1,27 @@
+{
+  "labels": [
+    "APPROVED",
+    "DECLINED",
+    "OTHER",
+    "STIPS_REQUIRED"
+  ],
+  "label2id": {
+    "APPROVED": 0,
+    "DECLINED": 1,
+    "OTHER": 2,
+    "STIPS_REQUIRED": 3
+  },
+  "id2label": {
+    "0": "APPROVED",
+    "1": "DECLINED",
+    "2": "OTHER",
+    "3": "STIPS_REQUIRED"
+  },
+  "best_val_acc": 0.942641298265249,
+  "epochs": 3,
+  "train_size": 28594,
+  "val_size": 3574,
+  "test_size": 3575,
+  "model_name": "distilbert-base-uncased",
+  "max_length": 512
+}
