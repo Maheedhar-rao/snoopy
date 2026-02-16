@@ -114,8 +114,8 @@ class ClassifyRequest(BaseModel):
     body: str = ""
     snippet: str = ""
     # Optional metadata (for feedback logging)
-    email_response_id: Optional[int] = None
-    deal_id: Optional[int] = None
+    email_response_id: Optional[str] = None
+    deal_id: Optional[str] = None
     from_email: str = ""
     lender_name: str = ""
     tenant_id: str = "pathway"
