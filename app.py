@@ -19,7 +19,7 @@ import logging
 import statistics
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from fastapi import FastAPI, HTTPException, Header, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -114,8 +114,8 @@ class ClassifyRequest(BaseModel):
     body: str = ""
     snippet: str = ""
     # Optional metadata (for feedback logging)
-    email_response_id: Optional[str] = None
-    deal_id: Optional[str] = None
+    email_response_id: Optional[Any] = None
+    deal_id: Optional[Any] = None
     from_email: str = ""
     lender_name: str = ""
     tenant_id: str = "pathway"
