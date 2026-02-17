@@ -275,15 +275,15 @@ def classify_email(
         confidence=claude_result.get("confidence", 0.5),
         classification_method="claude_api",
         model_version=result.get("model_version", "v1"),
-        reason=claude_result.get("summary", ""),
-        evidence=result.get("evidence", {}),
+        reason=claude_result.get("summary") or "",
+        evidence=result.get("evidence") or {},
         approval_flag=approval_flag,
-        all_scores=result.get("all_scores", {}),
-        offer_details=claude_result.get("offer_details", {}),
+        all_scores=result.get("all_scores") or {},
+        offer_details=claude_result.get("offer_details") or {},
         sentiment=claude_sentiment,
-        decline_reason=claude_result.get("decline_reason", ""),
-        summary=claude_result.get("summary", ""),
-        stips_requested=claude_result.get("stips_requested", []),
+        decline_reason=claude_result.get("decline_reason") or "",
+        summary=claude_result.get("summary") or "",
+        stips_requested=claude_result.get("stips_requested") or [],
     )
 
 
