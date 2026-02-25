@@ -36,7 +36,7 @@ logger = logging.getLogger("ml-service")
 API_KEYS = set(filter(None, os.environ.get("ML_API_KEYS", "").split(",")))
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE") or os.environ.get("SUPABASE_SERVICE_KEY")
-BERT_TRAFFIC_PCT = int(os.environ.get("BERT_TRAFFIC_PCT", "30"))
+BERT_TRAFFIC_PCT = int(os.environ.get("BERT_TRAFFIC_PCT", "70"))
 
 # ── Supabase client (lazy singleton) ──
 _sb = None
