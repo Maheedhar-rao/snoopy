@@ -415,10 +415,16 @@ def retrain(
 
     feedback_test = pd.DataFrame()
     if len(feedback_new) >= 10:
-        _, feedback_test = train_test_split(
-            feedback_new, test_size=0.2, stratify=feedback_new["label"], random_state=42
-        )
-        feedback_test["label_id"] = feedback_test["label"].map(LABEL2ID)
+        min_class = feedback_new["label"].value_counts().min()
+        try:
+            stratify = feedback_new["label"] if min_class >= 2 else None
+            _, feedback_test = train_test_split(
+                feedback_new, test_size=0.2, stratify=stratify, random_state=42
+            )
+            feedback_test["label_id"] = feedback_test["label"].map(LABEL2ID)
+        except ValueError:
+            print("  Skipping feedback test split (too few samples per class)")
+            feedback_test = pd.DataFrame()
 
     print(f"  Train: {len(train_df)}, Val: {len(val_df)}, Test: {len(test_df)}")
     if len(feedback_test) > 0:

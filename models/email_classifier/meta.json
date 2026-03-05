@@ -17,11 +17,117 @@
     "2": "OTHER",
     "3": "STIPS_REQUIRED"
   },
-  "best_val_acc": 0.942641298265249,
-  "epochs": 3,
-  "train_size": 28594,
-  "val_size": 3574,
-  "test_size": 3575,
+  "max_length": 512,
   "model_name": "distilbert-base-uncased",
-  "max_length": 512
+  "version": "v2",
+  "parent_version": "v1",
+  "best_val_acc": 0.8808,
+  "epochs": 3,
+  "train_size": 3826,
+  "val_size": 478,
+  "test_size": 479,
+  "feedback_rows": 158,
+  "original_rows": 57316,
+  "provenance": {
+    "trained_at": "2026-03-04T23:36:24.777572+00:00",
+    "feedback_cutoff": "2026-03-04T23:36:24.777992+00:00",
+    "git_commit": "a50f9a1"
+  },
+  "evaluation": {
+    "main_test": {
+      "accuracy": 0.8643,
+      "per_class": {
+        "APPROVED": {
+          "precision": 0.775,
+          "recall": 0.8857,
+          "f1": 0.8267,
+          "support": 70.0
+        },
+        "DECLINED": {
+          "precision": 0.9227,
+          "recall": 0.9824,
+          "f1": 0.9516,
+          "support": 170.0
+        },
+        "OTHER": {
+          "precision": 0.8706,
+          "recall": 0.8268,
+          "f1": 0.8481,
+          "support": 179.0
+        },
+        "STIPS_REQUIRED": {
+          "precision": 0.7708,
+          "recall": 0.6167,
+          "f1": 0.6852,
+          "support": 60.0
+        }
+      },
+      "macro_f1": 0.8279
+    },
+    "feedback_test": {
+      "accuracy": 0.9688,
+      "per_class": {
+        "APPROVED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0.0
+        },
+        "DECLINED": {
+          "precision": 0.9167,
+          "recall": 1.0,
+          "f1": 0.9565,
+          "support": 11.0
+        },
+        "OTHER": {
+          "precision": 1.0,
+          "recall": 0.9524,
+          "f1": 0.9756,
+          "support": 21.0
+        },
+        "STIPS_REQUIRED": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0.0
+        }
+      },
+      "macro_f1": 0.483
+    },
+    "previous_model": {
+      "accuracy": 0.8372,
+      "per_class": {
+        "APPROVED": {
+          "precision": 0.6932,
+          "recall": 0.8714,
+          "f1": 0.7722,
+          "support": 70.0
+        },
+        "DECLINED": {
+          "precision": 0.8936,
+          "recall": 0.9882,
+          "f1": 0.9385,
+          "support": 170.0
+        },
+        "OTHER": {
+          "precision": 0.8742,
+          "recall": 0.7765,
+          "f1": 0.8225,
+          "support": 179.0
+        },
+        "STIPS_REQUIRED": {
+          "precision": 0.75,
+          "recall": 0.55,
+          "f1": 0.6346,
+          "support": 60.0
+        }
+      },
+      "macro_f1": 0.7919
+    },
+    "safety_net": {
+      "total": 479,
+      "flagged": 9,
+      "rate": 1.88
+    }
+  }
 }
