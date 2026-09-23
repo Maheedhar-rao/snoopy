@@ -27,6 +27,7 @@ from pydantic import BaseModel, Field
 import uvicorn
 
 from predict import get_classifier, reload_classifier
+from offer_amount import advance_amount
 
 # ── Logging ──
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -202,13 +203,14 @@ def classify_email(
         # Extract offer details via regex if APPROVED
         offer_details = {}
         if result["response_type"] == "APPROVED":
-            text = f"{req.subject}\n{req.body or req.snippet}".lower()
-            m = re.search(r"\$\s*([0-9][0-9,]{3,})", text)
-            if m:
-                try:
-                    offer_details["amount"] = int(m.group(1).replace(",", ""))
-                except ValueError:
-                    pass
+            text = f"{req.subject}\n{req.body or req.snippet}"
+            # Same symbol-anchored search as before, skipping a figure whose
+            # own label closes with "fee, $" - which on Loan23 is every
+            # figure the old pattern could reach. See offer_amount.py.
+            amount = advance_amount(text)
+            if amount is not None:
+                offer_details["amount"] = amount
+            text = text.lower()
             m = re.search(r"(factor|buy rate)[^\d]*([0-9][.]\d{1,2})", text)
             if m:
                 try:
