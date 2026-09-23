@@ -27,6 +27,7 @@ from pydantic import BaseModel, Field
 import uvicorn
 
 from predict import get_classifier, reload_classifier
+from offer_amount import advance_amount
 
 # ── Logging ──
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
@@ -202,13 +203,15 @@ def classify_email(
         # Extract offer details via regex if APPROVED
         offer_details = {}
         if result["response_type"] == "APPROVED":
-            text = f"{req.subject}\n{req.body or req.snippet}".lower()
-            m = re.search(r"\$\s*([0-9][0-9,]{3,})", text)
-            if m:
-                try:
-                    offer_details["amount"] = int(m.group(1).replace(",", ""))
-                except ValueError:
-                    pass
+            text = f"{req.subject}\n{req.body or req.snippet}"
+            # The advance by the name the funder gives it. Anchoring on the
+            # dollar sign returned a fee on every Loan23 approval, because
+            # Loan23 prints the symbol in the row label and never on a figure
+            # (see offer_amount.py). Those numbers reached reps as approvals.
+            amount = advance_amount(text)
+            if amount is not None:
+                offer_details["amount"] = amount
+            text = text.lower()
             m = re.search(r"(factor|buy rate)[^\d]*([0-9][.]\d{1,2})", text)
             if m:
                 try:
